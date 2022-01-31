@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    
+        <label>Irányítószám:</label>
+        <input type="number" id="zipCode" minlength="4" maxlength="4">
+        <button id="zipCodeButton">Lekérdez</button>
+        <p>
+          Helység neve:  <span id="city"></span>
+        </p>
+        <p>
+            Megye: <span id="county"></span>
+        </p>
+
+        <iframe
+        id="map"
+        src="https://www.bing.com/maps/embed?h=400&w=500&cp=46.7833~17.6833&lvl=13"
+        width="500"
+        height="400"
+    ></iframe>
+       
+
+    <script>
+        const zipCode = document.querySelector("#zipCode");
+        const zipCodeButton = document.querySelector("#zipCodeButton");
+
+        zipCodeButton.addEventListener('click', async () => {
+           const url = `https://api.zippopotam.us/hu/${zipCode.value}`
+          // window.open(url)
+          /*
+           fetch(url)
+           .then(response => response.json())
+           .then(data => document.querySelector("#city").innerHTML = data.places[0]['place name'])
+          
+        })
+        */
+            
+            const response = await fetch(`https://api.zippopotam.us/hu/${zipCode.value}`);
+
+            if (response.status === 404) {
+                return  alert('Nem szerepel ilyen irányítószám az adatbázisban!');
+            }
+            const data = await response.json();
+            
+            document.querySelector("#city").innerHTML = data.places[0]['place name'];
+            document.querySelector("#county").innerHTML = data.places[0].state;
+            document.querySelector("#map").src = `https://www.bing.com/maps/embed?h=400&w=500&cp=${data.places[0].latitude}~${data.places[0].longitude}&lvl=13`
+
+            console.log(data.places[0])
+        })
+
+    </script>
+    
+</body>
+</html>

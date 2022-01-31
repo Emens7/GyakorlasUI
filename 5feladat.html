@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <h1 style="color:green"></h1>  
+        <h3>Írd be a leszót </h3>  
+          
+        <form oninput ="return verifyPassword()">  
+        <!-- Enter Password -->  
+        <td> </td>  
+        <input type = "password" id = "pswd" value = "">   
+        <p id = "message"> </p>  
+          
+        <!-- Click to verify valid password -->  
+        <input type = "submit" id="submit" value = "Elküld">  
+          
+        <!-- Click to reset fields -->  
+        <button type = "reset" value = "Reset" >Töröl</button>  
+        </form>  
+
+        <script>  
+            function verifyPassword() {  
+              const pw = document.getElementById("pswd").value;  
+              //check empty password field  
+              if(pw == "") {  
+                 document.getElementById("message").innerHTML = "A mező nem lehet üres!"; 
+                 document.getElementById("message").style.color = 'red'; 
+                 return false;  
+              }  
+               
+             //minimum password length validation  
+              if(pw.length < 6) {  
+                 document.getElementById("message").innerHTML = "A jelszónak legalább 6 karakternek kell lennie!"; 
+                 document.getElementById("message").style.color = 'red';  
+                 return false;  
+              }  
+              
+            //maximum length of password validation  
+              if(pw.length > 12) {  
+                 document.getElementById("message").innerHTML = "A jelszó nem lehet hosszabb 12 karakternél!"; 
+                 document.getElementById("message").style.color = 'red';  
+                 return false;  
+              }
+            //minimum one number
+              if (!(/\d+/.test(pw))) {
+                document.getElementById("message").innerHTML  = 'A jelszónak tartalmaznia kell legalább egy számot!';
+                document.getElementById("message").style.color = 'red';
+              }
+             
+              else {  
+                // alert("Password is correct");
+                document.getElementById("message").innerHTML = "A jelszó a szabályoknak megfelel";
+                document.getElementById("message").style.color = 'green';
+                document.getElementById("submit").focus();
+              }  
+            }  
+            </script>  
+         
+</body>
+</html>

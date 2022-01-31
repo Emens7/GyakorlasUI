@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+          td, th {
+          border: 1px solid #999;
+          padding: 0.5rem;
+          text-align: center;
+        }
+
+        button {
+            margin-top: 1rem;
+            margin-left: 1rem;
+        }
+        </style>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+            </tr>
+        </thead> 
+        <tbody id="test"></tbody>
+         
+    </table>
+
+    <button id="cellT">Transposing</button>
+    
+    <script>
+         const matrix = [
+            [1, 4, 3, 7],
+            [0, 12, 22, 24],
+            [32, 24, 52, 67],
+            [72, 45, 32, 77]
+        ];
+        
+      const matrixRow =  matrix[0].map((row, index) => {
+            return matrix.map((column) => {
+                return column[index]
+            })
+        })
+
+    function cellTransposing() {
+
+        console.log(matrix.length);
+
+        let outputHTML = "";
+
+        for (let i = 0; i < matrix.length; i++) {
+             outputHTML += "<tr>";
+            for (let j = 0; j < matrix[i].length; j++) {
+           
+                outputHTML += "<td>" + matrix[i][j] + "</td>";
+            
+            }
+            
+            outputHTML += "</tr>";
+        }
+
+        document.querySelector("#test").innerHTML = outputHTML;
+    };
+
+    function rowTransposing() {
+        let outputHTML = "";
+
+        outputHTML = "<tbody>"
+
+        for(let i = 0; i<matrix.length; i++) {
+            outputHTML += "<tr>";
+            outputHTML += "<td>" + matrix[i][0] + "</td>";
+            outputHTML += "<td>" + matrix[i][1] + "</td>";
+            outputHTML += "<td>" + matrix[i][2] + "</td>";
+            outputHTML += "<td>" + matrix[i][3] + "</td>";
+            document.querySelector("#test").innerHTML = outputHTML;
+            outputHTML += "</tr>";
+        }
+
+        outputHTML = "</tbody>";
+    }
+
+    cellTransposing()
+
+    const cellTransButton = document.querySelector("#cellT");
+
+    cellTransButton.addEventListener('click', () => {
+        
+            rowTransposing()
+        
+    });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <ul id="myList">
+            
+        </ul>
+        <p>Összesen: <span id="sum"></span> Ft</p>
+    </div>
+    <form oninput="verifyInput()">
+        <div>
+            <label>Árú megnevezése</label>
+            <input type="text" id="product">
+            <p id="message1"></p>
+        </div>
+        <div>
+            <label for="">Az árú ára</label>
+            <input type="number" id="productPrice">
+            <p id="message2"></p>
+        </div>
+    
+    <div>
+        <button id="submit">Hozzáad</button>
+    </div>
+
+</form>
+
+    <script>
+         const products = [
+            {
+                name: 'Képkeret',
+                price: 1800
+            },
+            {
+                name: 'Asztali lámpa',
+                price: 12549
+            },
+            {
+                name: 'Fotel',
+                price: 35500
+            },
+            {
+                name: 'Puff (80x40)',
+                price: 16900
+            },
+            {
+                name: 'TV-asztal',
+                price: 10500
+            }
+        ];
+
+        function verifyInput() {
+
+            const productsInput = document.querySelector("#product").value;
+            const priceInput = document.querySelector("#productPrice").value;
+
+            if (productsInput.length < 2) {
+                document.querySelector("#message1").innerHTML = "A termék neve legalább két karakternek kell lennie!"
+                document.querySelector("#message1").style.color = "red";
+                return false; 
+            }else if (priceInput < 1) {
+                document.querySelector("#message2").innerHTML = "A szám nem lehet negatív vagy nulla!";
+                document.querySelector("#message2").style.color = "red";
+                return false; 
+            
+            }else {
+                document.getElementById("message1").innerHTML = "A jelszó a szabályoknak megfelel";
+                document.getElementById("message1").style.color = 'green';
+                document.getElementById("message2").innerHTML = "A jelszó a szabályoknak megfelel";
+                document.getElementById("message2").style.color = 'green';
+                document.getElementById("submit").focus();
+                
+            }
+        }
+
+        let list = document.querySelector('#myList');
+        
+        function arrayAll() {
+            products.forEach((item) => {
+                let li = document.createElement("li");
+                li.innerText = item.name + ' ' + item.price +' Ft';
+                
+                list.appendChild(li);
+
+            });
+
+            const sum = products.reduce(function(sum, current) {
+                return sum + current.price;
+            }, 0 );
+
+            const sumLabel = document.querySelector("#sum");
+            sumLabel.innerText = sum + ' Ft'
+
+            console.log(sum)
+        }
+        const product = document.querySelector("#product");
+        const productPrice = document.querySelector('#productPrice');
+        const submit = document.querySelector('#submit');
+
+        submit.addEventListener('click', () => {
+            const newItems = {
+                name: product.value, 
+                price: parseInt(productPrice.value)
+            }
+            products.push(newItems);
+
+            arrayAll(products);
+            
+            document.querySelector("#product").value = "";
+            document.querySelector("#productPrice").value = "";
+
+            console.log(products)
+        })
+
+        arrayAll(products);
+
+        
+
+
+    </script>
+</body>
+</html>

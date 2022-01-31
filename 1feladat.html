@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="name">Name:</label>
+
+    <input type="text" id="name" name="name" required>
+    
+       <button id="button-greet"
+            type="button">Submit</button>
+</body>
+
+<script>
+    const nameInput = document.querySelector('#name');
+
+    const greetbutton = document.querySelector('#button-greet')
+
+    greetbutton.addEventListener('click', () => {
+        const name = nameInput.value;
+        alert(`Üdvözöljük ${name}!`)
+    })
+</script>
+
+</html>

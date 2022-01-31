@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="textIn">
+    <button id="submit">Berak</button>
+    <button id="random">Véletlen választ</button>
+
+    <div>
+        Berakott lista: <ul id="spanList"></ul>
+    </div>
+
+    <div>
+        <p>Választot szám: <span id="spanArr"></span></p>
+    </div>
+
+    <script>
+
+        const textIn = document.querySelector("#textIn");
+        const buttonAdd = document.querySelector("#submit");
+        const randomButton = document.querySelector('#random');
+
+        const arr = [];
+       
+
+        buttonAdd.addEventListener('click', () => {
+
+            const textArr = textIn.value
+
+            arr.push(textArr);
+            console.log(arr)
+
+            arr.forEach(function(item) {
+                let li = document.createElement("li");
+                let text = document.createTextNode(item);
+                li.appendChild(text);
+                document.querySelector("#spanList").appendChild(li)
+            })
+        })
+
+        randomButton.addEventListener('click', () => {
+            function random() {
+                return arr[Math.floor(Math.random() * arr.length)]
+            }
+
+            console.log(random())
+
+            document.querySelector("#spanArr").innerHTML = random();
+        })
+
+
+    </script>
+</body>
+</html>

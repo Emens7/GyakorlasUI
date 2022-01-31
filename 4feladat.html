@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="nums">
+    <button id='add'>Hozzáad</button>
+    <p>Számsor:<span id="numbersLine"></span></p>
+    <button id="avg">Átlagszámítás</button>
+    <p></p>
+    <div>
+        <label for="name">Átlagszámítás:</label>
+
+            <input type="text" id="textName" name="textName" required>
+            <button id="buttonSplit">Átlagszámítás</button>
+    </div>
+
+    <p>A beírt számok átlaga:<span id="span"></span></p>
+
+    <script>
+        const numberAdd = document.querySelector('#nums');
+        
+        const buttonAdd = document.querySelector('#add');
+        const buttonAvg = document.querySelector('#avg');
+
+        const textName = document.querySelector('#textName');
+        const buttonSplitAvg = document.querySelector(('#buttonSplit'));
+
+        let textSplit = [];
+
+        buttonSplitAvg.addEventListener('click', () => {
+
+                const textSplit = (textName.value).split(',');
+                textSplit.push();
+                
+                const toNumbers = textSplit.map((i) => Number(i))
+
+                if (toNumbers.some(n => isNaN(n))) {
+                alert('Csak számot lehet beírni');
+                return;
+            }
+
+                function average (num) {
+                    return (num.reduce((a, b) => (a + b)) / num.length).toFixed(2)
+                }
+                
+                document.getElementById("span").innerHTML = average(toNumbers);
+                console.log(average(toNumbers))
+             
+        })
+        
+
+        let numbers = [];
+
+        buttonAdd.addEventListener('click', () => {
+            
+           numbers.push(numberAdd.value);
+           document.getElementById("numbersLine").innerHTML = numbers;
+           console.log(numbers)
+
+
+        });
+
+        buttonAvg.addEventListener('click', () => {
+
+            const toNumbers = numbers.map((i) => Number(i))
+
+            function average (num) {
+                return num.reduce((a, b) => (a + b)) / num.length
+            }
+            
+
+            console.log(average(toNumbers))
+        })
+
+    </script>
+</body>
+</html>

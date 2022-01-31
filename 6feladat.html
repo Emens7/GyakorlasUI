@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {-webkit-filter: opacity(50%); filter: grayscale(50%);}
+    </style>
+</head>
+<body>
+    <input type="range" id="filter"  value="50" min="0" max="10" onchange="ChangeFilter()">
+    <img src="https://dbhir.hu/kepek/images/2017_jan/IMG_3615.jpg" id="Image1" alt="Balatonlelle Kishegyi út" width="400">
+
+    <script>
+        function ChangeFilter(event) {
+            Image = document.getElementById("Image1");
+            Filter = document.getElementById("filter").value;
+
+            Image.style.WebkitFilter = "opacity(" + Filter * 10 + "%)";
+        }
+    </script>
+</body>
+</html>

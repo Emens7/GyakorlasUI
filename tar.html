@@ -1,0 +1,17 @@
+function verifyInput() {
+    const productsInput = document.querySelector("#product");
+    const priceInput = document.querySelector("#productPrice");
+
+    if (priceInput == '') {
+        document.querySelector("#message2").innerHTML = "Kötelező árat megadni!";
+        document.querySelector("#message2").innerHTML = "red";
+    }else if (productsInput <= 0) {
+        document.querySelector("#message2").innerHTML = "A szám nem lehet negatív vagy nulla!";
+        document.querySelector("#message").style.color = "red";
+    }else if (productsInput.length > 2) {
+        document.querySelector("#message1").innerHTML = "A termék neve legalább két karakternek kell lennie!"
+        document.querySelector("#message1").style.color = "red";
+    }else {
+        document.getElementById("submit").focus();
+    }
+}

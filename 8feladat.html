@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="text">
+    <button id="reverseButton">Megfordit</button>
+    <p id="reverseText"></p>
+
+    <script>
+
+        const text = document.querySelector("#text");
+        const reverseButton = document.querySelector("#reverseButton");
+        const reverseText = document.querySelector('#reverseText')
+
+        reverseButton.addEventListener('click', () => {
+
+            textR = text.value;
+
+            const arr = [];
+
+            arr.push(textR)
+
+            function reverseString(arr) {
+                return arr.split("").reverse().join("");
+            }
+
+           
+            document.querySelector("#reverseText").innerHTML = reverseString(textR)
+        })
+
+        
+
+
+
+    </script>
+</body>
+</html>
